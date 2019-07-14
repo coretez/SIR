@@ -32,6 +32,7 @@ The project uses the folling directory structure for development:
 * Unit testing scritps are to be placed in `tests`.  Tests are to end in `Tests.js`
 
 ## Data Models
+A documented API can be access on Postman: https://documenter.getpostman.com/view/1117493/SVSHs9hS?version=latest
 
 ### Incidents
 This is the json for an incident object that gets used by /incidents:

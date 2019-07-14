@@ -1,6 +1,7 @@
 function userController(User) {
   function post(req, res) {
     const user = new User(req.body);
+    console.log(JSON.stringify(req.body));
     user.save();
     res.status(201);
     return res.json(user);
