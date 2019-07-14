@@ -23,3 +23,9 @@ The project is in the early stages of development. The objetives are:
 * Add proper authentication
 
 ## Project Structure
+The project uses the folling directory structure for development:
+* Application (app.js) runs from the root direcotry
+* Database models reside in `models`
+* Express routes reside in `routes`
+* The code that bridges the route to the database are kept in `controllers`
+* Unit testing scritps are to be placed in `tests`.  Tests are to end in `Tests.js`
