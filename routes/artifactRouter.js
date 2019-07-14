@@ -5,12 +5,12 @@ function routes (Artifact) {
   const artifactRouter = express.Router();
   const controller = artifactsController(Artifact);
 
-  artifactRouter.route('/artifacts')
+  artifactRouter.route('/')
   .post(controller.post)
   .get(controller.get);
 
   /* This is the middleware to map a single event by ID to the artifact attribute */
-  artifactRouter.use('/artifacts/:artifactId', (req, res, next) => {
+  artifactRouter.use('/:artifactId', (req, res, next) => {
     Artifact.findById(req.params.artifactId, (err, artifact) => {
       if (err) {
         return res.send(err);
@@ -23,7 +23,7 @@ function routes (Artifact) {
     });
   });
 
-  artifactRouter.route('/artifacts/:artifactId')
+  artifactRouter.route('/:artifactId')
     .get(controller.getById)
     .put(controller.putById)
     .patch(controller.patchById)

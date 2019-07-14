@@ -5,12 +5,12 @@ function routes (Ticket) {
   const ticketRouter = express.Router();
   const controller = ticketsController(Ticket);
 
-  ticketRouter.route('/tickets')
+  ticketRouter.route('/')
   .post(controller.post)
   .get(controller.get);
 
   /* This is the middlewaret to map a single event by ID to the ticklet attribute */
-  ticketRouter.use('/tickets/:ticketId', (req, res, next) => {
+  ticketRouter.use('/:ticketId', (req, res, next) => {
     Ticket.findById(req.params.tickeId, (err, ticket) => {
       if (err) {
         return res.send(err);
@@ -23,7 +23,7 @@ function routes (Ticket) {
     });
   });
 
-  ticketRouter.route('/tickets/:ticketId')
+  ticketRouter.route('/:ticketId')
     .get(controller.getById)
     .put(controller.putById)
     .patch(controller.patchById)

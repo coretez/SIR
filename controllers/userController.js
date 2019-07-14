@@ -72,4 +72,4 @@ function userController(User) {
   return { post, get, getById, putById, patchById, deleteById };
 }
 
-module.exports = bookController;
+module.exports = userController;

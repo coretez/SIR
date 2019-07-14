@@ -25,7 +25,9 @@ const artifactRouter = require('./routes/artifactRouter')(Artifact);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/api', bookRouter);
+app.use('/api/artifacts', artifactRouter);
+app.use('/api/tickets', ticketRouter);
+app.use('/api/users', userRouter);
 
 app.server = app.listen(port, () => {
   console.log(`Express server started on port: ${port}`);

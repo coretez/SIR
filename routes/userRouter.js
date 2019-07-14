@@ -5,12 +5,12 @@ function routes (User) {
   const userRouter = express.Router();
   const controller = usersController(User);
 
-  userRouter.route('/users')
+  userRouter.route('/')
   .post(controller.post)
   .get(controller.get);
 
   /* This is the middleware to map a single event by ID to the user attribute */
-  userRouter.use('/users/:userId', (req, res, next) => {
+  userRouter.use('/:userId', (req, res, next) => {
     User.findById(req.params.userId, (err, user) => {
       if (err) {
         return res.send(err);
@@ -23,7 +23,7 @@ function routes (User) {
     });
   });
 
-  userRouter.route('/users/:userId')
+  userRouter.route('/:userId')
     .get(controller.getById)
     .put(controller.putById)
     .patch(controller.patchById)

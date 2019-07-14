@@ -72,4 +72,4 @@ function ticketController(Ticket) {
   return { post, get, getById, putById, patchById, deleteById };
 }
 
-module.exports = bookController;
+module.exports = ticketController;
