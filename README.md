@@ -20,6 +20,7 @@ The project is in the early stages of development. The objetives are:
 * Define the base Scheme
 * Create an RESTful API to the object of that scheme (current)
 * Implement basic functions
+* Add a site for interface
 * Add proper authentication
 
 ## Project Structure
