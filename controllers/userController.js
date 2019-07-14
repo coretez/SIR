@@ -1,12 +1,6 @@
 function userController(User) {
   function post(req, res) {
     const user = new User(req.body);
-    /* check for required fields */
-    if (!req.body.title) {
-      res.status(400);
-      return res.send('Title is required');
-    }
-
     user.save();
     res.status(201);
     return res.json(user);

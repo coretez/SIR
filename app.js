@@ -23,7 +23,14 @@ const userRouter = require('./routes/userRouter')(User);
 const artifactRouter = require('./routes/artifactRouter')(Artifact);
 
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+/* Check to see if the incoming format is correct */
+app.use(bodyParser.json(), (error, req, res, next) => {
+  if (error instanceof SyntaxError) {
+    return res.sendStatus(400);
+  } else {
+    next();
+  }
+});
 
 app.use('/api/artifacts', artifactRouter);
 app.use('/api/tickets', ticketRouter);
