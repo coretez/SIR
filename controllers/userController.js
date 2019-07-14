@@ -59,7 +59,7 @@ function userController(User) {
       if (err) {
         return res.send(err);
       }
-      return res,sendStatus(204);
+      return res.sendStatus(204);
     })
   }
 
