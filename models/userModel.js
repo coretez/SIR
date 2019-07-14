@@ -4,12 +4,13 @@ const { Schema } = mongoose;
 
 const userModel = new Schema(
   {
-    title: { type: String },
-    author: { type: String },
-    genre: { type: String },
-    read: { type: Boolean, default: false }
+    url: String,
+    username: String,
+    password: String,
+    email: String,
+    groups: [String]
   }
 );
 
 const User = mongoose.model('User', userModel);
-module.exports = Ticket;
+module.exports = User;
