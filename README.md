@@ -30,3 +30,47 @@ The project uses the folling directory structure for development:
 * Express routes reside in `routes`
 * The code that bridges the route to the database are kept in `controllers`
 * Unit testing scritps are to be placed in `tests`.  Tests are to end in `Tests.js`
+
+## Data Models
+
+### Incidents
+This is the json for an incident object that gets used by /incidents:
+```
+{
+  "detection": Number,
+  "actor": String,
+  "plan": String,
+  "file_set": [String],
+  "date": Date,
+  "is_starred": Boolean,
+  "subject": String,
+  "description": String,
+  "severity": Number,
+  "is_incident": Boolean,
+  "is_major": Boolean,
+  "status": String,
+  "confidentiality": Number,
+  "category": Number,
+  "opened_by": Number,
+  "concerned_business_lines": [String]
+}
+```
+
+### Users
+```
+{
+    "url": String,
+    "username": String,
+    “password”: String,
+    "email": String,
+    "groups": [String]
+}
+```
+
+### Artifacts
+```
+{
+	“name”: String,
+	“artifact”: Object
+}
+```
