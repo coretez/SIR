@@ -2,10 +2,19 @@ function artifactController(Artifact) {
   function post(req, res) {
     const artifact = new Artifact(req.body);
     /* check for required fields */
-    if (!req.body.title) {
+    if (!req.body.name) {  // no name
       res.status(400);
-      return res.send('Title is required');
-    }
+      return res.send('Name of artifact is required');
+    } else if (!req.body.artifact) {  // no artifact object
+      res.status(400);
+      return res.send('Artifact object is required');
+    } 
+    //not sure what will go in the artifact just yet
+
+    // else if (!req.body.artifact.id) {
+    //   res.status(400);
+    //   return res.send('Artifact object ID is required');
+    // }
 
     artifact.save();
     res.status(201);
@@ -22,18 +31,15 @@ function artifactController(Artifact) {
     });
   }
 
-  function getById (req, res) 
-  { 
+  function getById (req, res) { 
     res.json(req.artifact); 
   }
 
   function putById (req, res) {
     const { artifact } = req;
     /* One-for-one relationship between request (req) elements and the model */
-    artifact.title = req.body.title;
-    artifact.author = req.body.author;
-    artifact.genre = req.body.genre;
-    ticartifactket.read = req.body.read;
+    if (req.body.name) { artifact.name = req.body.name; }
+    if (req.body.artifact) { artifact.artifact = req.body.artifact; }
     req.artifact.save((err) => {
       if (err) {
         return res.send(err);
@@ -47,6 +53,14 @@ function artifactController(Artifact) {
     if (req.body._id) {
       delete req.body._id;
     }
+    // /* check for required fields */
+    // if (!req.body.name) {  // no name
+    //   res.status(400);
+    //   return res.send('Name of artifact is required');
+    // } else if (!req.body.artifact) {  // no artifact object
+    //   res.status(400);
+    //   return res.send('Artifact object is required');
+    // } 
     Object.entries(req.body).forEach(item => {
       const key = item[0];
       const value = item[1];

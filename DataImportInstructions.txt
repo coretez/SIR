@@ -1,0 +1,3 @@
+To import data into mongoDB, run 'mongo SirAPI < ____sJson.js' from CLI
+where ___ is the type of data you want to include
+e.g. mongo SirAPI < artifactsJson.js
