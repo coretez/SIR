@@ -1,5 +1,22 @@
 function userController(User) {
   function post(req, res) {
+    if (!req.body.username || !req.body.password || !req.body.email) {
+      res.status(400);
+      return res.send('Credentials incomplete');
+    }
+
+    if (false) {
+
+    }
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!re.test(String(email).toLowerCase())) {
+        res.status(400);
+        return res.send('Invalid email');
+      }
+    }
+    validateEmail(req.body.email);
+  
     const user = new User(req.body);
     console.log(JSON.stringify(req.body));
     user.save();
@@ -8,7 +25,8 @@ function userController(User) {
   }
 
   function get(req, res) {
-    const { query } = req;
+    const { query } = {req};
+
     User.find(query, (err, users) => {
       if (err) {
         return res.send(err);
