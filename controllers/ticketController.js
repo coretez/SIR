@@ -30,7 +30,7 @@ function ticketController(Ticket) {
   function putById (req, res) {
     const { ticket } = req;
     /* One-for-one relationship between request (req) elements and the model */
-    ticket.title = req.body.title;
+    ticket.subject = req.body.subject;
     ticket.author = req.body.author;
     ticket.genre = req.body.genre;
     ticket.read = req.body.read;

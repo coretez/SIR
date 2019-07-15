@@ -25,10 +25,11 @@ function userController(User) {
   function putById (req, res) {
     const { user } = req;
     /* One-for-one relationship between request (req) elements and the model */
-    user.title = req.body.title;
-    user.author = req.body.author;
-    user.genre = req.body.genre;
-    user.read = req.body.read;
+    user.url = req.body.url;
+    user.username = req.body.username;
+    user.password = req.body.password;
+    user.email = req.body.email;
+    user.groups = req.body.groups;
     req.user.save((err) => {
       if (err) {
         return res.send(err);
