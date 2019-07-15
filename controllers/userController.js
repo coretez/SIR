@@ -29,7 +29,7 @@ function userController(User) {
     user.username = req.body.username;
     user.password = req.body.password;
     user.email = req.body.email;
-    user.groups = req.body.groups;
+    user.groups =req.body.groups;
     req.user.save((err) => {
       if (err) {
         return res.send(err);
