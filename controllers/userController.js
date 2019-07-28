@@ -1,10 +1,22 @@
+const bcrypt = require('bcrypt');
+
 function userController(User) {
+  const BCRYPT_SALT_ROUNDS = 12;
+  
   function post(req, res) {
-    const user = new User(req.body);
-    console.log(JSON.stringify(req.body));
-    user.save();
-    res.status(201);
-    return res.json(user);
+    let user = new User(req.body);
+
+    bcrypt.hash(user.password, BCRYPT_SALT_ROUNDS)
+    .then(function (hashedPassword) {
+      user.password = hashedPassword;
+      user.save();
+      res.status(201);
+      /* delete user.password before replying */
+      return res.json(user)
+    })
+    .catch(function (error) {
+      return res.sendStatus(403).send(error);
+    });
   }
 
   function get(req, res) {
