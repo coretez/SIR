@@ -51,7 +51,7 @@
       </div>
       <div class="row shadow">
         <q-btn color="accent" text-color="white" label="Add" @click="addUser()" ></q-btn>
-        <q-btn color="primary" text-color="white" label="Cancel" :to="{ name: 'users' }" ></q-btn>
+        <q-btn color="primary" text-color="white" label="Cancel" :to="{ name: 'tickets' }" ></q-btn>
       </div>
     </div>
   </q-page>
