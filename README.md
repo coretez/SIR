@@ -15,6 +15,12 @@ To install SIR:
 This project aims to use a correct Open RESTful API, using common tools, such as NodeJS and MongoDB. Development wil use unit testing and keep a single npm build (exception is the mongodb installation).
 In the end this project will allow other to quickly integrate solutions with a low chance of dependancy and platfor specific build issues.
 
+## About Mongo
+To start mongod, 
+`<Path to bin>/mongod -f <Path to Config>/mongodb.conf`
+
+This will create a socket on the local system for the node server to connect to.
+
 ## Status
 The project is in the early stages of development. The objetives are:
 * Define the base Scheme

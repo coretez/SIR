@@ -34,7 +34,6 @@ function tokenController(Token) {
       if (err) {
         return res.send(err);
       }
-      console.log(`Sending tokens`);
       return res.json(tokens);
     });
   }

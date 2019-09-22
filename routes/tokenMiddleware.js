@@ -20,15 +20,16 @@ function routes (Token) {
         }
         if (tokens.length === 0) {
           console.log('Token not found');
-          return res.end();
+          // This should end the process
+          return res.status(401);
+        } else {
+          return next()
         }
        })
     } else {
       // No token provided
       return res.end();
     }
-
-    return next()
   });
 
   return tokenMiddleware;

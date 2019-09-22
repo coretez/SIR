@@ -2,9 +2,10 @@ function ticketController(Ticket) {
   function post(req, res) {
     const ticket = new Ticket(req.body);
     /* check for required fields */
-    if (!req.body.title) {
+    if (!req.body.subject) {
+      console.log('Failed Vaildation', req.body);
       res.status(400);
-      return res.send('Title is required');
+      return res.send('A Subject is required');
     }
 
     ticket.save();

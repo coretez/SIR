@@ -6,8 +6,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const bcrypt = require('bcrypt');
-// const { insert } = require('./controllers/tokenController');
-
 const app = express();
 
 if (process.env.ENV === 'Test') {
@@ -28,11 +26,6 @@ const tokenRouter = require('./routes/tokenRouter')(Token);
 const tokenMiddleware = require('./routes/tokenMiddleware')(Token);
 const userRouter = require('./routes/userRouter')(User);
 const artifactRouter = require('./routes/artifactRouter')(Artifact);
-
-const tokenInsert = require ('./controllers/tokenInsert');
-
-const config = require('./config/main.js');
-const BCRYPT_SALT_ROUNDS = 12;
 
 function login(req, res) {
   console.log(req.body);
@@ -96,6 +89,7 @@ app.use('/api/tickets', tokenMiddleware, ticketRouter);
 app.use('/api/tokens', tokenMiddleware, tokenRouter);
 app.use('/api/users', tokenMiddleware, userRouter);
 
+// Remove these in production
 app.use('/dev/users', userRouter);
 app.use('/dev/tokens', tokenRouter);
 
