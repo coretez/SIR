@@ -3,6 +3,12 @@
     <div class="column" style="width: 80%;">
       <div class="row form">
         <q-input outlined v-model="data.subject" label="Subject" class="unit-4"></q-input>
+        <q-select outlined 
+          class="local-select"
+          v-model="data.status"
+          :options="statusOptions"
+          label="Status" 
+        ></q-select>
       </div>
       <div class="row form">
         <q-input outlined v-model="data.description" label="Description" class="unit-6"></q-input>
@@ -40,7 +46,7 @@
         ></q-toggle>
       </div>
       <div class="row shadow">
-        <q-btn color="accent" text-color="white" label="Add" @click="addUser()" ></q-btn>
+        <q-btn color="accent" text-color="white" label="Update" @click="updateUser()" ></q-btn>
         <q-btn color="primary" text-color="white" label="Cancel" :to="{ name: 'tickets' }" ></q-btn>
       </div>
     </div>
@@ -59,6 +65,7 @@
 
 .unit-4 {
   width: 400px;
+  padding: 5px 10px 15px 0px;
 }
 
 .unit-6 {
@@ -77,6 +84,7 @@ import axios from 'axios'
 
 export default {
   name: 'AddUser',
+  props: ['rec'],
   data () {
     return {
       url: '/api/users',
@@ -97,29 +105,36 @@ export default {
             lead: String,
             actions: [String]
         */
+
       data: {
-        subject: '',
-        description: '',
-        status: 'open',
-        public: false,
-        type: 'ticket',
-        priority: 'low',
-        severity: 'low',
-        groups: [],
-        tags: [],
-        lead: ''
+        subject: this.rec.subject,
+        description: this.rec.description,
+        date: this.rec.date,
+        children: this.rec.children,
+        parent_id: this.rec.parent_id,
+        status: this.rec.status,
+        public: this.rec.public,
+        type: this.rec.type,
+        priority: this.rec.priority,
+        severity: this.rec.severity,
+        groups: this.rec.groups,
+        tags: this.rec.tags,
+        lead: this.rec.lead,
+        actions: this.rec.actions,
+        _id: this.rec._id
       },
       severityOptions: ['low', 'medium', 'high', 'critical'],
       priorityOptions: ['debug', 'low', 'medium', 'high'],
-      typeOptions: ['ticket', 'incident', 'violation']
+      typeOptions: ['ticket', 'incident', 'violation'],
+      statusOptions: ['open', 'pending', 'on-hold', 'solved', 'closed']
     }
   },
 
   methods: {
-      addUser () {
+      updateUser () {
         const config = {
-          url: `/api/tickets/`,
-          method: 'post',
+          url: `/api/tickets/`+this.rec._id,
+          method: 'patch',
           headers: { 
             'Content-Type': 'application/json',
             'Token': this.$store.state.token 

@@ -87,14 +87,12 @@ export default {
         axios
           .request(config)
           .then((data) => {
-            console.log(`This is ${JSON.stringify(data)}`)
             this.data = data.data
           })
           .catch(error => {
             console.log(`have error`)
             console.log(`In Status Setup-Error. ${error}`)
           })
-          .finally(() => { console.log('completing setup.') })
     }
   },
   mount () {

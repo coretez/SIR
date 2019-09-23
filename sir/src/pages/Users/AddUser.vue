@@ -1,14 +1,30 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="column">
+    <div class="column" style="width: 80%;">
       <div class="row form">
-        <q-input outlined v-model="data.username" label="Name" ></q-input>
+        <q-input outlined v-model="data.username"
+          label="Full Name"
+          class="unit-6"
+          hint="Full name of the user"
+        ></q-input>
       </div>
       <div class="row form">
-        <q-input outlined v-model="data.password" label="Password" ></q-input>
+        <q-input v-model="data.password" filled :type="isPwd ? 'password' : 'text'" hint="Toggle to view">
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            ></q-icon>
+          </template>
+        </q-input>
       </div>
       <div class="row form">
-        <q-input outlined v-model="data.email" label="Email" ></q-input>
+        <q-input outlined v-model="data.email"
+          label="Email"
+          class="unit-6"
+          hint="Used for notification and login."
+        ></q-input>
       </div>
       <div class="row shadow">
         <q-btn color="accent" text-color="white" label="Add" @click="addUser()" ></q-btn>
@@ -27,6 +43,19 @@
 .q-btn {
   margin:  5px;
 }
+
+.unit-4 {
+  width: 400px;
+}
+
+.unit-6 {
+  width: 600px;
+}
+
+.local-select {
+  width: 200px;
+  padding: 5px 10px 5px 0px;
+}
 </style>
 
 <script>
@@ -37,7 +66,7 @@ export default {
   data () {
     return {
       url: '/api/users',
-      selected: [],
+      isPwd: true,
       data: {
         url: '',
         username: '',

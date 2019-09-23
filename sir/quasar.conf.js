@@ -60,6 +60,7 @@ module.exports = function (ctx) {
         'QTr',
         'QTd',
         'QInput',
+        'QSelect',
         'QToggle'
       ],
 

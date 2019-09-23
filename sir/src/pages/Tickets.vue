@@ -14,6 +14,9 @@
       <div class="row shadow">
         <q-btn color="white" text-color="black" label="Refresh" @click="setup()" ></q-btn>
         <q-btn color="accent" text-color="white" label="Add" :to="{ name: 'addTicket' }" ></q-btn>
+        <q-btn color="accent" text-color="white" label="Update" 
+          :to="{ name: 'updateTicket', params: { rec: selected[0] }}" >
+        </q-btn>
         <q-btn color="primary" text-color="white" label="Delete" @click="deleteTicket(selected[0])" ></q-btn>
       </div>
     </div>
@@ -121,7 +124,6 @@ export default {
             console.log(`have error`)
             console.log(`In Status Setup-Error. ${error}`)
           })
-          .finally(() => { console.log('completing setup.') })
     }
   },
   mount () {

@@ -38,7 +38,7 @@
         </q-item>
         <q-item clickable to="/tickets">
           <q-item-section avatar>
-            <q-icon name="record_voice_over" />
+            <q-icon name="local_activity" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Tickets</q-item-label>
@@ -47,7 +47,7 @@
         </q-item>
         <q-item clickable to="/users">
           <q-item-section avatar>
-            <q-icon name="rss_feed" />
+            <q-icon name="group" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Users</q-item-label>
@@ -61,6 +61,15 @@
           <q-item-section>
             <q-item-label>Tokens</q-item-label>
             <q-item-label caption>Manage Access Tokens</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" target="_blank" href="https://github.com/coretez/SIR">
+          <q-item-section avatar>
+            <q-icon name="build" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Configuration</q-item-label>
+            <q-item-label caption>Define Custom Variables</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://github.com/coretez/SIR">
