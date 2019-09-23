@@ -44,37 +44,35 @@ export default {
       data: [],
       columns: [
         /* Actual Model
-            detection: Number,
-            actor: String,
-            plan: String,
-            file_set: [String],
-            date: Date,
-            is_starred: Boolean,
             subject: String,
             description: String,
-            severity: Number,
-            is_incident: Boolean,
-            is_major: Boolean,
+            children: [String], // Will need to use JSON.parse to change into an object
             status: String,
-            confidentiality: Number,
-            category: Number,
-            opened_by: Number,
-            concerned_business_lines: [String]
+            date: Date,
+            public: Boolean,
+            parent_id: String,
+            type: String,
+            priority: String,
+            severity: String,
+            groups: [String],
+            tags: [String],
+            lead: String,
+            actions: [String]
         */
-        { name: 'detection', label: 'Reference', field: 'detection', sortable: true },
-        { name: 'actor', label: 'Actor', field: 'actor' },
-        { name: 'is_starred', label: 'Focus', field: 'is_starred' },
-        { name: 'subject', label: 'Subject', field: 'subject' },
-        { name: 'severity', label: 'Severity', field: 'severity' },
-        { name: 'is_incident', label: 'Incident', field: 'is_incident' },
-        { name: 'is_major', label: 'Major', field: 'is_major' },
+        { name: 'subject', label: 'Subject', field: 'subject', sortable: true },
+        { name: 'description', label: 'Description', field: 'description' },
         { name: 'status', label: 'Status', field: 'status' },
-        { name: 'category', label: 'Category', field: 'category' }
+        { name: 'date', label: 'Date', field: 'date' },
+        { name: 'severity', label: 'Severity', field: 'severity' },
+        { name: 'type', label: 'Type', field: 'type' },
+        { name: 'tags', label: 'Tags', field: 'tags' },
+        { name: 'lead', label: 'Lead', field: 'lead' }
       ]
     }
   },
   methods: {
       deleteTicket (rec) {
+        console.log('record', rec)
         const config = {
           url: `/api/tickets/${ rec._id }`,
           method: 'delete',
@@ -91,6 +89,9 @@ export default {
             this.setup()
           })
           .catch(error => {
+            if (error.response.status == '401') {
+              this.$router.push({name: 'login'})
+            }
             console.log(`have error`)
             console.log(`In Status Setup-Error. ${error}`)
           })
@@ -111,10 +112,12 @@ export default {
         axios
           .request(config)
           .then((data) => {
-            console.log(`This is ${JSON.stringify(data)}`)
             this.data = data.data
           })
           .catch(error => {
+            if (error.response.status == '401') {
+              this.$router.push({name: 'login'})
+            }
             console.log(`have error`)
             console.log(`In Status Setup-Error. ${error}`)
           })
